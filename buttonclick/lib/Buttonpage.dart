@@ -6,9 +6,16 @@ class Buttonpage extends StatefulWidget {
 }
 
 class _ButtonpageState extends State<Buttonpage> {
-  int countval = 0;
+  double countval = 0;
+  int total = 0;
+  double sizes;
   @override
   Widget build(BuildContext context) {
+    // if (countval == 0) {
+    //   sizes = 28;
+    // } else {
+    //   sizes = 18;
+    // }
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.amber,
@@ -21,7 +28,14 @@ class _ButtonpageState extends State<Buttonpage> {
           children: <Widget>[
             Expanded(
                 child: Center(
-              child: Text("Button clicked " + countval.toString() + " times"),
+              child: Text(
+                "Button clicked " +
+                    countval.toString() +
+                    " times\n" +
+                    "total time button clicked " +
+                    total.toString(),
+                style: TextStyle(fontSize: countval),
+              ),
             )),
             Column(
               mainAxisAlignment: MainAxisAlignment.start,
@@ -34,6 +48,7 @@ class _ButtonpageState extends State<Buttonpage> {
                   focusColor: Colors.red,
                   tooltip: 'add counter',
                   onPressed: () {
+                    setState(() => total += 1);
                     setState(() => countval += 1);
                   },
                 ),
@@ -44,6 +59,7 @@ class _ButtonpageState extends State<Buttonpage> {
                   child: Icon(Icons.remove),
                   tooltip: 'minus counter',
                   onPressed: () {
+                    setState(() => total += 1);
                     setState(() => countval -= 1);
                   },
                 ),
@@ -54,6 +70,7 @@ class _ButtonpageState extends State<Buttonpage> {
                   focusColor: Colors.red,
                   tooltip: 'reset',
                   onPressed: () {
+                    setState(() => total += 1);
                     setState(() => countval = 0);
                   },
                 ),
