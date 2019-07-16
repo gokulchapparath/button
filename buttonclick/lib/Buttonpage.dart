@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'Full.dart';
 
 class Buttonpage extends StatefulWidget {
   @override
@@ -6,79 +7,46 @@ class Buttonpage extends StatefulWidget {
 }
 
 class _ButtonpageState extends State<Buttonpage> {
-  double countval = 0;
-  int total = 0;
-  double sizes;
+  
+
   @override
   Widget build(BuildContext context) {
-    // if (countval == 0) {
-    //   sizes = 28;
-    // } else {
-    //   sizes = 18;
-    // }
+    
     return Scaffold(
+      backgroundColor: Colors.black,
       appBar: AppBar(
-        backgroundColor: Colors.amber,
-        title: Text("Button Click event"),
+        backgroundColor: Colors.black,
+        title: Text("Click game"),
       ),
       body: Center(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          //   crossAxisAlignment: CrossAxisAlignment.start,
+        
           children: <Widget>[
             Expanded(
                 child: Center(
-              child: Text(
-                "Button clicked " +
-                    countval.toString() +
-                    " times\n" +
-                    "total time button clicked " +
-                    total.toString(),
-                style: TextStyle(fontSize: countval),
+              child:
+
+                FloatingActionButton(
+                  backgroundColor: Colors.white,
+                  foregroundColor: Colors.black,
+                  focusColor: Colors.red,
+                  child: Icon(Icons.play_arrow),
+                  tooltip: 'Play',
+                  onPressed: () {
+                    Navigator.push(
+        context,
+        new MaterialPageRoute(builder: (context) => new Full()),
+      );
+                  },
+                ),
               ),
-            )),
-            Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: <Widget>[
-                FloatingActionButton(
-                  child: Icon(Icons.add),
-                  backgroundColor: Colors.amber,
-                  foregroundColor: Colors.black,
-                  focusColor: Colors.red,
-                  tooltip: 'add counter',
-                  onPressed: () {
-                    setState(() => total += 1);
-                    setState(() => countval += 1);
-                  },
-                ),
-                FloatingActionButton(
-                  backgroundColor: Colors.red,
-                  foregroundColor: Colors.black,
-                  focusColor: Colors.red,
-                  child: Icon(Icons.remove),
-                  tooltip: 'minus counter',
-                  onPressed: () {
-                    setState(() => total += 1);
-                    setState(() => countval -= 1);
-                  },
-                ),
-                FloatingActionButton(
-                  child: Icon(Icons.restore),
-                  backgroundColor: Colors.black,
-                  foregroundColor: Colors.white,
-                  focusColor: Colors.red,
-                  tooltip: 'reset',
-                  onPressed: () {
-                    setState(() => total += 1);
-                    setState(() => countval = 0);
-                  },
-                ),
-              ],
             ),
+            
           ],
         ),
       ),
     );
   }
 }
+
+
