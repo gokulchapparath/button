@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
-
+import 'package:flutter/material.dart' as prefix0;
+import 'dart:async';
+import 'main.dart';
+import 'Buttonpage.dart';
 class Full extends StatefulWidget {
   @override
   _FullState createState() => _FullState();
 }
 
 class _FullState extends State<Full> {
+  
+  
   double countval = 0;
   int total = 0;
   double sizes = 0;
@@ -15,6 +20,10 @@ class _FullState extends State<Full> {
   double sizes1 = 0;
   @override
   Widget build(BuildContext context) {
+    Timer.periodic(Duration(seconds: 60), (timer) {
+      _Disps(context,countval,countval1);
+       Navigator.of(context).pop(context);
+});
     if (countval >= 200) {
       sizes = 200;
     }
@@ -24,6 +33,7 @@ class _FullState extends State<Full> {
     }
     String my1 = (countval1.toInt()).toString();
     return Scaffold(
+      
       body: Column(
         children: <Widget>[
           Expanded(
@@ -66,5 +76,36 @@ class _FullState extends State<Full> {
         ],
       ),
     );
+
+    
   }
 }
+
+
+void _Disps(context,countval,countval1)
+    {
+      showDialog(
+        context: context,
+        builder: (BuildContext context)
+        {
+              return AlertDialog(
+                  title: new Text("Scores"),
+                content:new Text("times up !!\nplayer 1:"+(countval1.toInt()).toString()+"\nplayer 2:"+(countval.toInt()).toString()),
+                actions: <Widget>[
+                  new FlatButton(
+                    child: new Text("close"),
+                    onPressed: (){
+                      Navigator.of(context).pop(context);
+                      Navigator.push(
+        context,
+        new MaterialPageRoute(builder: (context) => new Buttonpage()),
+        
+      );
+                    },
+                  )
+                ],
+                 
+              );
+        }
+      );
+    }

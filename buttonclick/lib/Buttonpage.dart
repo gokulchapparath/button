@@ -30,7 +30,7 @@ class _ButtonpageState extends State<Buttonpage> {
                   backgroundColor: Colors.white,
                   foregroundColor: Colors.black,
                   focusColor: Colors.red,
-                  child: Icon(Icons.play_arrow),
+                  child: Icon(Icons.play_circle_outline),
                   tooltip: 'Play',
                   onPressed: () {
                     Navigator.push(
@@ -45,8 +45,10 @@ class _ButtonpageState extends State<Buttonpage> {
           ],
         ),
       ),
+      
     );
   }
 }
+
 
 
