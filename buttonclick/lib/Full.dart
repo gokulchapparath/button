@@ -18,11 +18,27 @@ class _FullState extends State<Full> {
   double countval1 = 0;
   int total1 = 0;
   double sizes1 = 0;
-
+String pm;
+String pm1;
 
   @override
   Widget build(BuildContext context) {
     Timer.periodic(Duration(seconds: 30), (timer) {
+      if(countval==countval1)
+      {
+         pm="DRAW";
+         pm1="DRAW";
+      }
+      else if(countval>countval1)
+      {
+ pm="YOU WIN";
+        pm1="YOU LOSE";
+      }
+      else if(countval1>countval)
+      {
+        pm1="YOU WIN";
+        pm="YOU LOSE";
+      }
       // _Disps(context,countval,countval1);
       //  Navigator.of(context).pop(context);
 deactivate();
@@ -31,7 +47,10 @@ dispose();
       var route = new MaterialPageRoute(
           builder: (BuildContext context) => Score(
               p1: (countval1.toInt()).toString(),
-              p2: (countval.toInt()).toString()));
+              p2: (countval.toInt()).toString(),
+              pm2:pm.toString(),
+              pm1:pm1.toString(),)
+            );
       Navigator.of(context).push(route);
     });
     if (countval >= 200) {
