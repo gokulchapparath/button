@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'Full.dart';
 
@@ -8,15 +10,38 @@ class Buttonpage extends StatefulWidget {
 
 class _ButtonpageState extends State<Buttonpage> {
   
+  Future<bool> _OnBackPress()
+  {
+    return showDialog(
+      barrierDismissible: false,
+      context: context,
+     builder: (context)=>AlertDialog(
+       title: Text("Exit App"),
+       actions: <Widget>[
+         FlatButton(
+           child: Text("NO"),
+           onPressed: ()=>Navigator.pop(context,false),
+         ),
+         FlatButton(
+           child: Text("YES"),
+           onPressed: ()=>exit(0),
+         ),
+       ],
+     ) 
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
     
-    return Scaffold(
+    return WillPopScope(
+      onWillPop: _OnBackPress,
+      child: new Scaffold(
       backgroundColor: Colors.black,
       appBar: AppBar(
         backgroundColor: Colors.black,
-        title: Text("Click game"),
+        title: Text("Screen Destroyer"),
+        automaticallyImplyLeading: false,
       ),
       body: Center(
         child: Column(
@@ -46,6 +71,7 @@ class _ButtonpageState extends State<Buttonpage> {
         ),
       ),
       
+    ),
     );
   }
 }
